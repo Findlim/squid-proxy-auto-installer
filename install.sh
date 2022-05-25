@@ -8,7 +8,7 @@ sudo chpasswd <<<"root: ${NEW_PASSWORD}"
 # install fail2ban 
 # it will start working automatically
 sudo apt update
-sudo apt install fail2ban
+sudo apt install -y fail2ban
 
 # configuring ufw
 sudo ufw default allow outgoing
@@ -23,16 +23,16 @@ sudo ufw limit NEW_SSH_PORT
 sudo ufw allow NEW_HTTP_PORT
 sudo ufw allow NEW_HTTPS_PORT
 # change ssh port to a new one
-sudo sed -i 's/#Port 22/#Port ${NEW_SSH_PORT}/' /etc/ssh/sshd_config
+sudo sed -i "s/#Port 22/#Port ${NEW_SSH_PORT}/" /etc/ssh/sshd_config
 sudo systemctl restart ssh
 # enable new ufw rules
-sudo ufw enable
+echo "y" | sudo ufw enable
 
 # install squid proxy
-sudo apt install squid
+sudo apt install -y squid
 # change default proxy http ports in config
-sudo sed -i 's/http_port 43535/http_port ${NEW_HTTP_PORT}/' squid.conf
-sudo sed -i 's/http_port 43536/http_port ${NEW_HTTPS_PORT}/' squid.conf
+sudo sed -i "s/http_port 43535/http_port ${NEW_HTTP_PORT}/" squid.conf
+sudo sed -i "s/http_port 43536/http_port ${NEW_HTTPS_PORT}/" squid.conf
 # replace default squid config file
 sudo cp -fr squid.conf /etc/squid/squid.conf
 sudo systemctl restart squid
@@ -42,8 +42,8 @@ sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1
 echo "net.ipv4.icmp_echo_ignore_all = 1" >> /etc/sysctl.conf
 sudo sysctl -p
 
-echo "SSH: ${hostname -I}:${NEW_SSH_PORT}"
-echo "root password: ${NEW_PASSWORD}"
-echo "━━━━━━━━━━━━━━━━━━"
-echo "proxy 1: ${hostname -I}:${NEW_HTTP_PORT}"
-echo "proxy 2: ${hostname -I}:${NEW_HTTPS_PORT}"
+echo "Save this data:"
+echo "New root password: ${NEW_PASSWORD}"
+echo "SSH port: ${NEW_SSH_PORT}"
+echo "peoxy port 1: ${NEW_HTTP_PORT}"
+echo "proxy port 2: ${NEW_HTTPS_PORT}"
