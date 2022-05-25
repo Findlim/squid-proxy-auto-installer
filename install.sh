@@ -3,7 +3,6 @@
 # generating a new strong random password
 NEW_PASSWORD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32 ; echo '')
 # setting a new password
-sudo echo "${NEW_PASSWORD}" | passwd --stdin root
 sudo echo -e "${NEW_PASSWORD}\n${NEW_PASSWORD}" | passwd root
 
 # install fail2ban 
@@ -46,5 +45,5 @@ sudo sysctl -p
 echo "Save this data:"
 echo "New root password: ${NEW_PASSWORD}"
 echo "SSH port: ${NEW_SSH_PORT}"
-echo "peoxy port 1: ${NEW_HTTP_PORT}"
+echo "proxy port 1: ${NEW_HTTP_PORT}"
 echo "proxy port 2: ${NEW_HTTPS_PORT}"
