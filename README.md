@@ -7,13 +7,25 @@ This script changes the work of the firewall, so other software may not work cor
 
 ## Usage
 Install Git:  
-`sudo apt update`  
-`sudo apt-get install git`  
+```
+sudo apt update
+```
+```
+sudo apt-get install git
+```  
 Clone this repo:  
-`git clone https://github.com/oqo0/squid-proxy-auto-installer.git`  
+```
+git clone https://github.com/oqo0/squid-proxy-auto-installer.git
+```  
 Go to project directory:  
-`cd squid-proxy-auto-installer/`  
+```
+cd squid-proxy-auto-installer/
+```  
 Make the script executable:  
-`sudo chmod +x install.sh`  
+```
+sudo chmod +x install.sh
+```  
 Run the script:  
-`sudo ./install.sh`  
+```
+sudo ./install.sh
+```  
