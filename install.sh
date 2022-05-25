@@ -18,12 +18,12 @@ NEW_SSH_PORT=$(shuf -i 2000-9999 -n 1)
 NEW_HTTP_PORT=$(shuf -i 10000-29999 -n 1)
 NEW_HTTPS_PORT=$(shuf -i 30000-65000 -n 1)
 # allow ports and limit ssh
-sudo ufw allow NEW_SSH_PORT
-sudo ufw limit NEW_SSH_PORT
-sudo ufw allow NEW_HTTP_PORT
-sudo ufw allow NEW_HTTPS_PORT
+sudo ufw allow "${NEW_SSH_PORT}"
+sudo ufw limit "${NEW_SSH_PORT}"
+sudo ufw allow "${NEW_HTTP_PORT}"
+sudo ufw allow "${NEW_HTTPS_PORT}"
 # change ssh port to a new one
-sudo sed -i "s/#Port 22/#Port ${NEW_SSH_PORT}/" /etc/ssh/sshd_config
+sudo sed -i "s/#Port 22/Port ${NEW_SSH_PORT}/" /etc/ssh/sshd_config
 sudo systemctl restart ssh
 # enable new ufw rules
 echo "y" | sudo ufw enable
