@@ -4,6 +4,7 @@
 NEW_PASSWORD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32 ; echo '')
 # setting a new password
 sudo echo "${NEW_PASSWORD}" | passwd --stdin root
+sudo echo -e "${NEW_PASSWORD}\n${NEW_PASSWORD}" | passwd root
 
 # install fail2ban 
 # it will start working automatically
