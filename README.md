@@ -9,10 +9,8 @@ This script changes the work of the firewall, so other software may not work cor
 Install Git:  
 ```
 sudo apt update
-```
-```
 sudo apt-get install git
-```  
+```
 Clone this repo:  
 ```
 git clone https://github.com/oqo0/squid-proxy-auto-installer.git
