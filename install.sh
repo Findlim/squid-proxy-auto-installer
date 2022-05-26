@@ -37,10 +37,11 @@ sudo sed -i "s/http_port 43536/http_port ${NEW_HTTPS_PORT}/" squid.conf
 sudo cp -fr squid.conf /etc/squid/squid.conf
 sudo systemctl restart squid
 
-# disable 2 way ping
+# fix disable 2 way ping
 sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1
 echo "net.ipv4.icmp_echo_ignore_all = 1" >> /etc/sysctl.conf
 sudo sysctl -p
+sudo iptables -I INPUT -p icmp --icmp-type echo-request -j DROP
 
 echo "Save this data:"
 echo "New root password: ${NEW_PASSWORD}"
