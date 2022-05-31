@@ -37,6 +37,12 @@ sudo sed -i "s/http_port 43536/http_port ${NEW_HTTPS_PORT}/" squid.conf
 sudo cp -fr squid.conf /etc/squid/squid.conf
 sudo systemctl restart squid
 
+# block port scan
+sudo iptables -A port-scan -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s -j RETURN
+sudo iptables -A port-scan -j DROP
+sudo iptables -A specific-rule-set -p tcp --syn -j syn-flood
+sudo iptables -A specific-rule-set -p tcp --tcp-flags SYN,ACK,FIN,RST RST -j port-scan
+
 # fix disable 2 way ping
 sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1
 echo "net.ipv4.icmp_echo_ignore_all = 1" >> /etc/sysctl.conf
