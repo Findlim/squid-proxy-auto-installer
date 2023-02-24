@@ -13,7 +13,7 @@ sudo apt-get install git
 ```
 Clone this repo:  
 ```
-git clone https://github.com/oqo0/squid-proxy-auto-installer.git
+git clone https://github.com/Findlim/squid-proxy-auto-installer.git
 ```  
 Go to project directory:  
 ```
