@@ -33,3 +33,13 @@ Be sure to save this information.
 `SSH port` is your new SSH port.  
 If you want to connect to your server use: `ssh -p <SSH port> <Server IP>` and paste a new generated password.  
 Also the script output shows 2 proxy ports: for HTTP and HTTPS traffic.  
+
+```  
+sudo apt update
+sudo apt-get install git
+git clone https://github.com/Findlim/squid-proxy-auto-installer.git
+cd squid-proxy-auto-installer/
+sudo chmod +x install.sh
+sudo ./install.sh
+
+```  
